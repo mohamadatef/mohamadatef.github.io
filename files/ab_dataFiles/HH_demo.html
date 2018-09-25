@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HH Demo</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  </head>
+  <body ng-app="myapp" ng-controller="myCtrl">
+    <textarea id="source">
+
+class: center, middle
+
+## Henderson–Hasselbalch equation 
+  ### $$ pH = 6.1 + log_{10}[\frac{HCO_3^{-}}{0.03 \* PaCO_2}]$$
+  <form class="form-inline">
+  <div class="form-group">
+    <img src='kid.svg' width="60">
+    <label for="hco3">$$HCO_{3}^{-}$$</label>
+    <input type="number" class="form-control" id="hco3" ng-model="hco3">
+  </div>
+  <div class="form-group">
+        <img src='lung.svg' width="60">
+
+    <label for="co2">$$CO_2$$</label>
+    <input type="number" class="form-control" id="co2" ng-model="co2">
+  </div>
+  <br />
+    <div class="form-group">
+    pH :<label for="co2" ng-bind="6.1 +Math.log10(hco3/(.03*co2))"></label>
+    
+  </div>
+<br />
+<button  class="btn btn-primary" ng-click="reset()">Reset to Normal ABG</button>
+</form>
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+    <script type="text/javascript">
+  var app = angular.module('myapp', []);
+  app.controller ("myCtrl", function($scope){
+    $scope.hco3 = 24
+    $scope.co2 = 40
+    $scope.data = $scope.co2 + 89
+    $scope.Math = window.Math;
+      $scope.reset  = function(){
+      $scope.hco3 = 24
+      $scope.co2  = 40
+    }
+
+  })
+  
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+
+    </body>
+</html>
